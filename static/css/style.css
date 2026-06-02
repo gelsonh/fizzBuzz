@@ -740,12 +740,15 @@ main {
 }
 
 .code-card {
-    max-height: 1120px;
+    max-height: min(760px, 72vh);
     overflow: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     color: var(--code-text);
     background: var(--code-bg);
     border-radius: 8px;
     box-shadow: 0 18px 44px rgba(32, 37, 31, 0.2);
+    touch-action: pan-x pan-y;
 }
 
 .code-block {
@@ -804,7 +807,12 @@ main {
 }
 
 .description-panel {
+    max-height: min(760px, 72vh);
+    overflow: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     color: #2f3637;
+    touch-action: pan-y;
 }
 
 .description-panel h2 {
@@ -934,6 +942,19 @@ main {
         grid-template-columns: 1fr;
     }
 
+    .code-layout {
+        gap: 1rem;
+    }
+
+    .code-card {
+        max-height: 54vh;
+    }
+
+    .description-panel {
+        max-height: 34vh;
+        padding-right: 0.35rem;
+    }
+
     .control-panel,
     .fizzbuzz-form {
         grid-template-columns: 1fr;
@@ -1011,12 +1032,31 @@ main {
     }
 
     .code-page {
-        padding-top: 1.5rem;
+        padding: 1.25rem 0 2rem;
     }
 
     .code-block {
-        min-width: 640px;
-        font-size: 0.92rem;
+        min-width: 600px;
+        padding: 1rem;
+        font-size: 0.86rem;
+        line-height: 1.48;
+    }
+
+    .code-card {
+        max-height: 50vh;
+    }
+
+    .description-panel {
+        max-height: 36vh;
+    }
+
+    .description-panel h2 {
+        font-size: 1.35rem;
+    }
+
+    .description-panel p {
+        font-size: 0.95rem;
+        line-height: 1.55;
     }
 
 }
