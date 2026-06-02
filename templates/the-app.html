@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fizz Buzz | The App</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg main-nav">
+            <div class="container page-container">
+                <a class="navbar-brand brand-logo" href="/" aria-label="Gelson Hernandez home">
+                    <img src="/static/images/logo-face.png" width="42" height="42" alt="Gelson logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainMenu" aria-controls="mainMenu"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainMenu">
+                    <ul class="navbar-nav ms-auto nav-links">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/the-app">The App</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/the-code">The Code</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">The Repo</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="app-shell">
+        <section class="container page-container">
+            <div class="app-hero">
+                <div class="app-hero-copy">
+                    <span class="eyebrow">Interactive challenge</span>
+                    <h1>FizzBuzz Playground</h1>
+                    <p>
+                        Choose your Fizz, Buzz, and stop values, then generate the sequence from 1 to your selected
+                        limit.
+                    </p>
+                </div>
+                <div class="mini-board" aria-hidden="true">
+                    <span>1</span>
+                    <span>2</span>
+                    <span class="tile-fizz">Fizz</span>
+                    <span>4</span>
+                    <span class="tile-buzz">Buzz</span>
+                    <span class="tile-fizzbuzz">FizzBuzz</span>
+                </div>
+            </div>
+
+            <div class="app-workspace">
+                <section class="control-panel" aria-labelledby="controls-title">
+                    <div class="panel-heading">
+                        <span class="panel-icon"><i class="bi bi-sliders2"></i></span>
+                        <div>
+                            <h2 id="controls-title">Set the Rules</h2>
+                            <p>Use whole numbers. The stop value supports up to 100.</p>
+                        </div>
+                    </div>
+
+                    <form class="fizzbuzz-form" method="POST" action="/the-app"> 
+                        <div class="input-grid">
+                            <label class="number-field">
+                                <span>Fizz Value:</span>
+                                <input type="number" name="fizz_value" min="1" placeholder="3" required>
+                            </label>
+
+                            <label class="number-field">
+                                <span>Buzz Value:</span>
+                                <input type="number" name="buzz_value" min="1" placeholder="5" required>
+                            </label>
+
+                            <label class="number-field">
+                                <span>Stop Value (Max 50):</span>
+                                <input type="number" name="stop_value" min="1" max="50" placeholder="50" required>
+                            </label>
+                        </div>
+
+                        <button class="btn run-button" type="submit">
+                            <i class="bi bi-play-fill"></i>
+                            Run FizzBuzz
+                        </button>
+                    </form>
+                </section>
+
+                <section class="results-panel" id="results" aria-labelledby="results-title">
+                    <div class="panel-heading">
+                        <span class="panel-icon"><i class="bi bi-grid-3x3-gap-fill"></i></span>
+                        <div>
+                            <h2 id="results-title">Results</h2>
+                            <p>Your generated values will appear here.</p>
+                        </div>
+                    </div>
+
+                    <div class="result-grid" aria-label="Sample FizzBuzz results">
+                       {% for result in results %}
+                    <span class="
+                        {% if result == 'Fizz' %}result-fizz
+                        {% elif result == 'Buzz' %}result-buzz
+                        {% elif result == 'FizzBuzz' %}result-fizzbuzz
+                        {% endif %}
+                    ">
+                        {{ result }}
+                    </span>
+                       {% endfor %}
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container page-container">
+            <div class="footer-content">
+                <div>&copy; 2026 Gelson Hernandez</div>
+                <div>
+                    <img src="/static/images/logo-fizzbuzz.png" height="50" alt="FizzBuzz logo">
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                    <a href="mailto:gelsonhz@outlook.com" aria-label="Email"><i class="bi bi-envelope-at-fill"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

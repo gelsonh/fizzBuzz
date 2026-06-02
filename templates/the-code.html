@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fizz Buzz | The Code</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg main-nav">
+            <div class="container page-container">
+                <a class="navbar-brand brand-logo" href="/" aria-label="Gelson Hernandez home">
+                    <img src="/static/images/logo-face.png" width="42" height="42" alt="Gelson logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainMenu" aria-controls="mainMenu"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainMenu">
+                    <ul class="navbar-nav ms-auto nav-links">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/the-app">The App</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/the-code">The Code</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">The Repo</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="code-page">
+        <section class="container page-container">
+            <h1 class="code-title">The Code</h1>
+            <hr class="section-rule">
+
+            <div class="code-layout">
+                <section class="code-card" aria-label="FizzBuzz code sample">
+                    <pre class="code-block"><code><span class="code-line"><span class="line-number">1</span><span><span class="code-comment"># Import the FizzBuzz logic into the Flask route</span></span></span>
+<span class="code-line"><span class="line-number">2</span><span><span class="code-keyword">from</span> flask <span class="code-keyword">import</span> Flask, render_template, request</span></span>
+<span class="code-line"><span class="line-number">3</span><span><span class="code-keyword">from</span> services.fizzbuzz_service <span class="code-keyword">import</span> generate_fizzbuzz</span></span>
+<span class="code-line"><span class="line-number">4</span><span></span></span>
+<span class="code-line"><span class="line-number">5</span><span>app = Flask(__name__)</span></span>
+<span class="code-line"><span class="line-number">6</span><span></span></span>
+<span class="code-line"><span class="line-number">7</span><span><span class="code-fn">@app.route</span>(<span class="code-string">"/the-app"</span>, methods=[<span class="code-string">"GET"</span>, <span class="code-string">"POST"</span>])</span></span>
+<span class="code-line"><span class="line-number">8</span><span><span class="code-keyword">def</span> <span class="code-fn">the_app</span>():</span></span>
+<span class="code-line"><span class="line-number">9</span><span class="indent-1">results = []</span></span>
+<span class="code-line"><span class="line-number">10</span><span></span></span>
+<span class="code-line"><span class="line-number">11</span><span class="indent-1"><span class="code-keyword">if</span> request.method == <span class="code-string">"POST"</span>:</span></span>
+<span class="code-line"><span class="line-number">12</span><span class="indent-2">fizz_value = int(request.form[<span class="code-string">"fizz_value"</span>])</span></span>
+<span class="code-line"><span class="line-number">13</span><span class="indent-2">buzz_value = int(request.form[<span class="code-string">"buzz_value"</span>])</span></span>
+<span class="code-line"><span class="line-number">14</span><span class="indent-2">stop_value = int(request.form[<span class="code-string">"stop_value"</span>])</span></span>
+<span class="code-line"><span class="line-number">15</span><span></span></span>
+<span class="code-line"><span class="line-number">16</span><span class="indent-2">results = generate_fizzbuzz(fizz_value, buzz_value, stop_value)</span></span>
+<span class="code-line"><span class="line-number">17</span><span></span></span>
+<span class="code-line"><span class="line-number">18</span><span class="indent-1"><span class="code-keyword">return</span> render_template(<span class="code-string">"the-app.html"</span>, results=results)</span></span>
+<span class="code-line"><span class="line-number">19</span><span></span></span>
+<span class="code-line"><span class="line-number">20</span><span></span></span>
+<span class="code-line"><span class="line-number">21</span><span><span class="code-comment"># Build an array of values following the FizzBuzz rules</span></span></span>
+<span class="code-line"><span class="line-number">22</span><span><span class="code-keyword">def</span> <span class="code-fn">generate_fizzbuzz</span>(fizz_value, buzz_value, stop_value):</span></span>
+<span class="code-line"><span class="line-number">23</span><span class="indent-1">results = []</span></span>
+<span class="code-line"><span class="line-number">24</span><span></span></span>
+<span class="code-line"><span class="line-number">25</span><span class="indent-1"><span class="code-keyword">for</span> number <span class="code-keyword">in</span> range(<span class="code-number">1</span>, stop_value + <span class="code-number">1</span>):</span></span>
+<span class="code-line"><span class="line-number">26</span><span class="indent-2"><span class="code-keyword">if</span> number % fizz_value == <span class="code-number">0</span> <span class="code-keyword">and</span> number % buzz_value == <span class="code-number">0</span>:</span></span>
+<span class="code-line"><span class="line-number">27</span><span class="indent-3">results.append(<span class="code-string">"FizzBuzz"</span>)</span></span>
+<span class="code-line"><span class="line-number">28</span><span class="indent-2"><span class="code-keyword">elif</span> number % fizz_value == <span class="code-number">0</span>:</span></span>
+<span class="code-line"><span class="line-number">29</span><span class="indent-3">results.append(<span class="code-string">"Fizz"</span>)</span></span>
+<span class="code-line"><span class="line-number">30</span><span class="indent-2"><span class="code-keyword">elif</span> number % buzz_value == <span class="code-number">0</span>:</span></span>
+<span class="code-line"><span class="line-number">31</span><span class="indent-3">results.append(<span class="code-string">"Buzz"</span>)</span></span>
+<span class="code-line"><span class="line-number">32</span><span class="indent-2"><span class="code-keyword">else</span>:</span></span>
+<span class="code-line"><span class="line-number">33</span><span class="indent-3">results.append(number)</span></span>
+<span class="code-line"><span class="line-number">34</span><span></span></span>
+<span class="code-line"><span class="line-number">35</span><span class="indent-1"><span class="code-keyword">return</span> results</span></span></code></pre>
+                </section>
+
+                <aside class="description-panel" aria-labelledby="description-title">
+                    <h2 id="description-title">Description</h2>
+                    <hr>
+                    <p>
+                        The app receives three values: <code>fizz_value</code>, <code>buzz_value</code>, and
+                        <code>stop_value</code>. These values come from the form on the app view through a
+                        <code>POST</code> request.
+                    </p>
+                    <p>
+                        The Flask route reads each value from <code>request.form</code>, converts it into an integer,
+                        and passes the numbers into <code>generate_fizzbuzz</code>.
+                    </p>
+                    <p>
+                        The FizzBuzz function loops from <code>1</code> through the selected stop value. If a number is
+                        divisible by both values, it adds <code>"FizzBuzz"</code>. If it is divisible only by the first
+                        value, it adds <code>"Fizz"</code>. If it is divisible only by the second value, it adds
+                        <code>"Buzz"</code>. Otherwise, it keeps the number.
+                    </p>
+                    <p>
+                        The resulting list is returned to the template as <code>results</code>, where each value can be
+                        displayed with a different visual style.
+                    </p>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container page-container">
+            <div class="footer-content">
+                <div>&copy; 2026 Gelson Hernandez</div>
+                <div>
+                    <img src="/static/images/logo-fizzbuzz.png" height="50" alt="FizzBuzz logo">
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                    <a href="mailto:gelsonhz@outlook.com" aria-label="Email"><i class="bi bi-envelope-at-fill"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
