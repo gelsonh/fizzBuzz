@@ -31,7 +31,7 @@ def the_code():
 
 
 @app.route("/the-repo")
-def the_code():
+def the_repo():
     return render_template("https://github.com/gelsonh/fizzBuzz")
 
 
