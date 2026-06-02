@@ -30,5 +30,10 @@ def the_code():
     return render_template("the-code.html")
 
 
+@app.route("/the-repo")
+def the_code():
+    return render_template("https://github.com/gelsonh/fizzBuzz")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
