@@ -214,7 +214,7 @@ main {
 }
 
 .home-visual img {
-    width: min(100%, 360px);
+    width: min(100%, 460px);
     margin: 0 auto;
     filter: drop-shadow(0 16px 18px rgba(57, 61, 63, 0.18));
 }
@@ -380,6 +380,16 @@ main {
 }
 
 .main-button {
+    --bs-btn-color: #ffffff;
+    --bs-btn-bg: var(--dark-surface);
+    --bs-btn-border-color: rgba(15, 23, 42, 0.12);
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: var(--dark-surface-hover);
+    --bs-btn-hover-border-color: var(--dark-surface-hover);
+    --bs-btn-focus-shadow-rgb: var(--accent-rgb);
+    --bs-btn-active-color: #ffffff;
+    --bs-btn-active-bg: var(--dark-surface-hover);
+    --bs-btn-active-border-color: var(--dark-surface-hover);
     color: #ffffff;
     background: var(--dark-surface);
     border-color: rgba(15, 23, 42, 0.12);
@@ -390,7 +400,10 @@ main {
 }
 
 .main-button:hover,
-.main-button:focus {
+.main-button:focus,
+.main-button:active,
+.main-button.active,
+.main-button:focus-visible {
     color: #ffffff;
     background: var(--dark-surface-hover);
     border-color: var(--dark-surface-hover);
